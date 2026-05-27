@@ -1,4 +1,5 @@
-import os, base64
+import os
+import base64
 from pathlib import Path
 from openai import OpenAI
 from dotenv import load_dotenv
@@ -13,9 +14,9 @@ def load_api_key() -> str:
 
 def build_scene_prompt() -> str:
     return (
-        "wide shot, early morning alley, soft orange sunlight, "
-        "wet pavement with fallen autumn leaves, old streetlamp still lit, "
-        "quiet street, watercolor diary illustration"
+        "wide shot, early morning bus stop, soft gray-blue sky, "
+        "green city bus approaching, wet pavement, empty bench, "
+        "road divider, quiet street, watercolor diary illustration"
     )
 
 
@@ -36,7 +37,7 @@ def save_image(image_bytes: bytes, out_path: Path) -> None:
 
 if __name__ == "__main__":
     load_api_key()
-    client = OpenAI()
+    client = OpenAI()  # 키 자동 탐지
     prompt = build_scene_prompt()
     print(f"[프롬프트] {prompt}")
     image_bytes = generate_image(client, prompt)

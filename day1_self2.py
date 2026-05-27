@@ -1,12 +1,15 @@
-import os, base64
+import base64
 from pathlib import Path
 from openai import OpenAI
 from dotenv import load_dotenv
 
 SCENE_BASE = (
-    "early morning alley, wet pavement with fallen autumn leaves, "
-    "old streetlamp still lit, quiet street, watercolor diary illustration"
+    "early morning bus stop, a person sitting alone on a cold bench, "
+    "hands resting on knees, wet pavement, green city bus approaching, "
+    "road divider, quiet street, soft gray-blue sky, "
+    "watercolor diary illustration"
 )
+
 
 def build_prompt_variants() -> list[tuple[str, str]]:
     variants: list[tuple[str, str]] = [

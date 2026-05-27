@@ -1,0 +1,24 @@
+{
+  "scenes": [
+    {
+      "scene_id": 1,
+      "scene_kr": "이른 아침, 버스정류장에서 혼자 앉아 있는 모습.",
+      "prompt_en": "wide shot, eye-level angle, soft morning light, watercolor diary illustration style"
+    },
+    {
+      "scene_id": 2,
+      "scene_kr": "버스정류장 의자 위에 떨어진 낙엽.",
+      "prompt_en": "close-up, low angle, soft morning light, watercolor diary illustration style"
+    },
+    {
+      "scene_id": 3,
+      "scene_kr": "거리의 조용한 풍경과 회색빛 하늘.",
+      "prompt_en": "medium shot, bird's eye view, soft gray-blue sky, watercolor diary illustration style"
+    },
+    {
+      "scene_id": 4,
+      "scene_kr": "버스가 천천히 모퉁이를 도는 모습.",
+      "prompt_en": "wide shot, eye-level angle, warm reflected light on the bus, watercolor diary illustration style"
+    }
+  ]
+}
