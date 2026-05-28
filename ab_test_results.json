@@ -1,0 +1,16 @@
+{
+  "domain": "travel",
+  "prompt": "이른 아침 버스정류장에서 혼자 버스를 기다렸다., empty bus stop at dawn, wide, eye-level, golden hour, soft natural lighting, 35mm wide-angle lens, warm, nostalgic, wanderlust, golden hour lighting, quiet street, travel blog photography",
+  "seed_a": 42,
+  "seed_b": 137,
+  "a_latencies": [
+    2.6664711001794785
+  ],
+  "b_latencies": [
+    1.7679849001578987
+  ],
+  "p95_a": 2.6664711001794785,
+  "p95_b": 1.7679849001578987,
+  "p95_latency_s": 2.6664711001794785,
+  "n_calls": 1
+}

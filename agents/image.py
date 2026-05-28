@@ -1,4 +1,5 @@
 import base64
+import time
 import requests
 from pathlib import Path
 
@@ -35,7 +36,17 @@ def _call_flux(prompt: str, seed: int = 42) -> str:
     return result["images"][0]["url"]
 
 
-def generate_image(prompt: str, output_path: str, model: str = "dalle") -> str:
+def generate_image(
+    prompt: str,
+    output_path: str | None = None,
+    model: str = "dalle",
+    seed: int = 42,
+) -> str:
+    if output_path is None:
+        auto_dir = Path("outputs") / "ab_test"
+        auto_dir.mkdir(parents=True, exist_ok=True)
+        output_path = str(auto_dir / f"{model}_seed{seed}_{int(time.time() * 1000)}.png")
+
     out = Path(output_path)
     out.parent.mkdir(parents=True, exist_ok=True)
 
@@ -44,7 +55,7 @@ def generate_image(prompt: str, output_path: str, model: str = "dalle") -> str:
         image_bytes = _call_openai_image(prompt)
         out.write_bytes(image_bytes)
     elif m == "flux":
-        url = _call_flux(prompt)
+        url = _call_flux(prompt, seed=seed)
         resp = requests.get(url)
         resp.raise_for_status()
         out.write_bytes(resp.content)
