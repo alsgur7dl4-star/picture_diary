@@ -17,6 +17,9 @@ wheels/
 outputs/
 *.png
 *.mp4
+results.json
+kling_task_id.txt
 
 # macOS
 .DS_Store
+

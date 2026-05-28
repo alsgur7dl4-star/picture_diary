@@ -8,7 +8,6 @@ from dotenv import load_dotenv
 def load_api_key() -> str:
     load_dotenv()
     api_key = os.getenv("OPENAI_API_KEY") or ""
-    print(f"[환경 확인] OPENAI_API_KEY 첫 5자: {api_key[:5] if api_key else 'None'}")
     return api_key
 
 
@@ -37,7 +36,7 @@ def save_image(image_bytes: bytes, out_path: Path) -> None:
 
 if __name__ == "__main__":
     load_api_key()
-    client = OpenAI()  # 키 자동 탐지
+    client = OpenAI()
     prompt = build_scene_prompt()
     print(f"[프롬프트] {prompt}")
     image_bytes = generate_image(client, prompt)

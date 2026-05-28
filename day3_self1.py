@@ -9,9 +9,7 @@ def load_diary() -> str:
     diary_path = Path("diary.md")
 
     if not diary_path.exists():
-        raise FileNotFoundError(
-            "diary.md 파일이 없습니다. picture_diary 폴더에서 실행 중인지 확인하세요."
-        )
+        raise FileNotFoundError("diary.md 파일이 없습니다.")
 
     return diary_path.read_text(encoding="utf-8")
 

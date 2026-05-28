@@ -2,7 +2,15 @@ import re
 import sys
 from pathlib import Path
 
-REQUIRED_FIELDS = ["scene_kr", "shot", "angle", "light", "composition", "lens", "prompt_en"]
+REQUIRED_FIELDS = [
+    "scene_kr",
+    "shot",
+    "angle",
+    "light",
+    "composition",
+    "lens",
+    "prompt_en",
+]
 
 
 def load_draft(path: Path) -> str:
@@ -15,11 +23,14 @@ def count_scenes(text: str) -> int:
 
 def check_fields(text: str, scene_idx: int) -> list[str]:
     sections = re.split(r"^## 장면 \d+.*$", text, flags=re.MULTILINE)
-    # sections[0]: 헤딩 이전 텍스트, sections[1]: 장면 1, sections[2]: 장면 2, ...
     if scene_idx >= len(sections):
         return REQUIRED_FIELDS[:]
     section = sections[scene_idx]
-    return [f for f in REQUIRED_FIELDS if not re.search(rf"^\s*-\s+{f}\s*:", section, re.MULTILINE)]
+    return [
+        f
+        for f in REQUIRED_FIELDS
+        if not re.search(rf"^\s*-\s+{f}\s*:", section, re.MULTILINE)
+    ]
 
 
 if __name__ == "__main__":

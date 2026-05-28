@@ -10,7 +10,7 @@ from pipeline import picture_diary_pipeline
 
 task_id_path = Path("kling_task_id.txt")
 if not task_id_path.exists():
-    print("오류: kling_task_id.txt 없음. day4_self1.py를 먼저 실행하세요.")
+    print("오류: kling_task_id.txt 없음.")
     sys.exit(1)
 
 task_id = task_id_path.read_text(encoding="utf-8").strip()
@@ -52,7 +52,6 @@ resp.raise_for_status()
 out_path.write_bytes(resp.content)
 print(f"저장 완료: {out_path} ({out_path.stat().st_size:,} bytes)")
 
-# pipeline 시범 실행 (animate_first=False → Kling submit 없음)
 diary_text = Path("diary.md").read_text(encoding="utf-8")
 result = picture_diary_pipeline(diary_text, animate_first=False)
 print(result)

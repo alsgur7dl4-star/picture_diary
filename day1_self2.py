@@ -60,5 +60,3 @@ if __name__ == "__main__":
         except Exception as e:
             print(f"[실패] {filename}: {e}")
             continue
-
-    print("\n끝. outputs/ 폴더에서 3장을 비교해 보세요.")

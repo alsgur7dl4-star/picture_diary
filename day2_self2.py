@@ -10,7 +10,7 @@ def load_keys() -> None:
     load_dotenv()
     key = os.getenv("FAL_KEY")
     if not key:
-        print("[오류] FAL_KEY가 .env 파일에 없습니다. .env에 FAL_KEY=... 를 추가해 주세요.")
+        print("[오류] FAL_KEY가 .env 파일에 없습니다.")
         raise SystemExit(1)
     print(f"FAL_KEY: {key[:5]}...")
 
@@ -46,11 +46,8 @@ if __name__ == "__main__":
     load_keys()
 
     prompt = load_first_prompt()
-    print(f"[프롬프트] {prompt}")
 
     url = call_flux_schnell(prompt)
-    print(f"[FLUX URL] {url}")
 
     out_path = Path("outputs") / "scene01_fal.png"
     save_image(url, out_path)
-    print(f"[저장 완료] {out_path}")
