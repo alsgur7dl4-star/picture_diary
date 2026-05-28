@@ -1,0 +1,32 @@
+{
+  "diary_first_line": "# Day 1 그림일기 원문",
+  "scenes": [
+    {
+      "scene_id": 1,
+      "scene_kr": "이른 아침, 버스정류장에서 혼자 서 있는 모습.",
+      "prompt_en": "wide shot, eye-level, soft lighting, watercolor diary illustration, quiet everyday mood"
+    },
+    {
+      "scene_id": 2,
+      "scene_kr": "버스를 기다리며 차가운 의자에 앉아 있는 모습.",
+      "prompt_en": "medium shot, eye-level, soft lighting, watercolor diary illustration, quiet everyday mood"
+    },
+    {
+      "scene_id": 3,
+      "scene_kr": "초록색 버스가 천천히 모퉁이를 돌고 있는 장면.",
+      "prompt_en": "wide shot, low angle, backlit lighting, watercolor diary illustration, quiet everyday mood"
+    },
+    {
+      "scene_id": 4,
+      "scene_kr": "버스 문이 열리며 하루가 시작되는 순간.",
+      "prompt_en": "close-up, eye-level, rim lighting, watercolor diary illustration, quiet everyday mood"
+    }
+  ],
+  "images": [
+    "outputs\\2026-05-27\\scene_1.png",
+    "outputs\\2026-05-27\\scene_2.png",
+    "outputs\\2026-05-27\\scene_3.png",
+    "outputs\\2026-05-27\\scene_4.png"
+  ],
+  "video": null
+}

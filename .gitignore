@@ -1,19 +1,22 @@
 # Python-generated files
 __pycache__/
 *.py[oc]
+*.pyc
 build/
 dist/
 wheels/
 *.egg-info
 
 # Virtual environments
-.venv
+.venv/
 
 # Secrets
 .env
 
-# Generated images
+# Generated outputs
 outputs/
+*.png
+*.mp4
 
 # macOS
 .DS_Store

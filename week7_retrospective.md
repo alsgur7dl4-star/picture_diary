@@ -1,0 +1,48 @@
+# 7주차 학습 회고
+
+## 5일간 배운 것
+
+### Day 1: 환경 설정과 첫 이미지 생성
+- .env로 API 키를 관리하는 방법을 배웠다.
+- OpenAI gpt-image-1과 fal.ai FLUX 두 모델로 이미지를 생성해 보았다.
+- SSH를 사용해 원격 컴퓨터에서 작업하는 환경을 구축했다.
+
+### Day 2: 장면 설계와 프롬프트 구조화
+- scene_draft.md로 4장면의 shot, angle, lighting, lens를 직접 설계했다.
+- scene_prompts.json으로 프롬프트를 구조화했다.
+- fal.ai FLUX를 처음 호출해 이미지를 생성했다.
+
+### Day 3: 모듈 분리와 자동 추출
+- agents/scene.py로 일기 텍스트에서 장면을 자동 추출하는 모듈을 만들었다.
+- agents/image.py로 이미지 생성을 모듈화했다.
+- 사람이 만든 프롬프트와 GPT가 자동 추출한 프롬프트를 비교했다.
+
+### Day 4: 비동기 처리와 가드레일
+- 동기와 비동기 처리의 차이를 이해했다. 동기는 결과가 나올 때까지 기다리고, 비동기는 결과가 나오지 않아도 다른 작업을 실행한다.
+- 가드레일로 반복 횟수, 시간, 비용을 제한하는 패턴을 배웠다.
+- Kling API로 이미지를 영상으로 변환하는 과정을 구현했다. submit 후 task_id를 받아 status로 상태를 확인하고, 완료되면 result에서 영상 URL을 받는다.
+
+### Day 5: 파이프라인 통합과 도메인 응용
+- pipeline.py로 장면 추출 → 이미지 생성 → 영상 생성 전체 흐름을 통합했다.
+- 여행 도메인에 특화된 프롬프트를 설계했다.
+
+## 비유 카드 연결
+
+| 비유 카드 | 연결 파일/코드 | 설명 |
+|-----------|---------------|------|
+| 잠긴 서랍 (.env) | `.env`, `load_dotenv()` | API 키를 코드 밖에서 안전하게 보관한다 |
+| 레시피 (프롬프트) | `SYSTEM_PROMPT` in `agents/scene.py` | LLM에게 원하는 출력 형식을 지시하는 레시피 |
+| 조립 라인 (파이프라인) | `pipeline.py` | 장면 → 이미지 → 영상 순서로 조립하는 생산 라인 |
+| 전문가 팀 (에이전트) | `agents/` 폴더 | 각 단계를 담당하는 전문가 모듈 |
+| 카메라 앵글 (shot/angle) | `scene_draft.md`, `prompt_en` | WS, MS, CU와 eye-level, low, high 조합 |
+| 조명 (lighting) | `prompt_en` | soft, rim, backlit으로 분위기를 바꾼다 |
+| 안전벨트 (가드레일) | `guardrails.py` | 반복, 시간, 비용을 제한해 폭주를 막는다 |
+| 택배 추적 (비동기 폴링) | `agents/video.py` | submit → status 확인 → result 수령 |
+| 도감 (JSON 스키마) | `domains/travel_prompts.json` | 도메인별 시각 어휘를 정리한 도감 |
+| 번역가 (prompt_en) | `extract_scenes()` | 한국어 일기를 영문 이미지 프롬프트로 번역 |
+
+## 아쉬운 점과 다음 목표
+
+- 노트북에 그래픽 카드가 없어서 SSH 환경에서 작업했는데, 로컬 개발 환경을 더 안정적으로 구축하고 싶다.
+- 이미지 품질을 높이기 위해 프롬프트 어휘를 더 다양하게 실험해 보고 싶다.
+- 도메인 응용에서 시간대별 변형(golden hour vs blue hour)을 비교해 보고 싶다.

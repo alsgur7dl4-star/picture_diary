@@ -1,0 +1,41 @@
+{
+  "domain": "travel",
+  "version": "day5",
+  "prompt_style": {
+    "shot": "wide",
+    "angle": "eye-level",
+    "lighting": "golden hour, soft natural lighting",
+    "lens_or_style": "35mm wide-angle lens",
+    "mood": "warm, nostalgic, wanderlust"
+  },
+  "scenes": [
+    {
+      "id": "scene_01",
+      "diary_sentence": "이른 아침 버스정류장에서 혼자 버스를 기다렸다.",
+      "visual_focus": "empty bus stop at dawn",
+      "prompt_addons": ["golden hour lighting", "quiet street", "travel blog photography"],
+      "negative_prompt": "text, watermark, blurry, crowded"
+    },
+    {
+      "id": "scene_02",
+      "diary_sentence": "젖은 보도블록 위에 낙엽이 흩어져 있었다.",
+      "visual_focus": "wet sidewalk with scattered autumn leaves",
+      "prompt_addons": ["close-up detail", "morning dew", "autumn atmosphere"],
+      "negative_prompt": "text, watermark, blurry"
+    },
+    {
+      "id": "scene_03",
+      "diary_sentence": "벤치에 앉아 이어폰으로 음악을 들었다.",
+      "visual_focus": "young man sitting on bench with earphones",
+      "prompt_addons": ["medium shot", "peaceful mood", "soft morning light"],
+      "negative_prompt": "text, watermark, blurry, crowded"
+    },
+    {
+      "id": "scene_04",
+      "diary_sentence": "초록색 버스가 천천히 다가왔다.",
+      "visual_focus": "green bus approaching on a quiet road",
+      "prompt_addons": ["wide shot", "low angle", "backlit lighting", "leading lines"],
+      "negative_prompt": "text, watermark, blurry, dark"
+    }
+  ]
+}

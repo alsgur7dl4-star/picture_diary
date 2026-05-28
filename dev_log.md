@@ -41,3 +41,23 @@
 - scene_extracted.json을 Day 3 self2 이미지 생성 입력으로 사용할 준비를 했다.
 - 사람이 직접 만든 scene_prompts.json과 GPT가 자동 추출한 scene_extracted.json을 비교했다.
 - 막힌 부분: 없음
+
+## Day 3 self2
+
+- 사용 모델: openai(gpt-image-1)
+- COMMON_STYLE: watercolor diary illustration, soft gray-blue morning palette, a single young man waiting quietly, consistent main character, quiet early morning bus stop atmosphere
+- 생성 결과: outputs/2026-05-27/scene_1~4.png
+- 재시도한 장면: 없음
+- Day 4 입력 가능 여부: 가능
+
+## Day 4 self1
+
+- 동기는 먼저한 결과가 나올떄까지 기다리는것이고 비동기는 앞에 결과가 나오지않았어도 다른 작업을 실행하는것입니다.
+- 가드레일은 반복 횟수, 시간, 상태 조건, 비용을 제한해서 API 호출이 계속 반복되는 문제를 막는 역할을 한다.
+
+## Day 4 self2
+
+- Kling은 이미지와 프롬프트를 받아 그기반으로 짧은 영상을 만들어 주는 API이라는걸 알게되었다
+- submit 후에는 바로 영상이 나오는 것이 아니라 task_id를 받아 status로 상태를 확인하고, 완료되면 result에서 영상 URL을 받는다.
+- picture_diary_pipeline()은 일기 -> 장면 -> 이미지 -> 영상 -> 결과 저장 흐름을 하나로 묶는 함수라고 정리했다.
+- Day 5 self1 도메인 후보는 여행 기록으로 할거같다.
