@@ -4,7 +4,7 @@ import requests
 from datetime import date
 from pathlib import Path
 
-from guardrails import check_max_iter, check_timeout, check_predicate, check_budget
+from guardrails import check_max_iter, check_timeout, check_predicate
 from agents.video import status_kling, result_kling
 from pipeline import picture_diary_pipeline
 
