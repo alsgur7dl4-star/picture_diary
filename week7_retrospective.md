@@ -1,53 +1,49 @@
-# 7주차 학습 회고
+# 그림일기 프로젝트 — 5일 결과 회고
 
-## 5일간 배운 것
+## Day별 핵심 산출물
 
-### Day 1: 환경 설정과 첫 이미지 생성
+| Day   | 핵심 산출물 (파일)                                                                     | 실행 확인                                                             |
+| ----- | -------------------------------------------------------------------------------------- | --------------------------------------------------------------------- |
+| Day 1 | `diary.md`, `scene_draft.md`                                                           | gpt-image-1 / flux 각 첫 이미지 생성 확인 (`outputs/scene01_*.png`)   |
+| Day 2 | `scene_prompts.json`, `scene_draft_seed.md`                                            | shot·angle·lighting 포함 4장면 프롬프트 작성, flux 호출               |
+| Day 3 | `agents/scene.py`, `agents/image.py`, `scene_extracted.json`                           | `extract_scenes()`로 일기→4장면 자동 추출, `validate_scenes()` 통과   |
+| Day 4 | `agents/video.py`, `guardrails.py`                                                     | `generate_video()` submit→status→result 폴링으로 `scene_1.mp4` 생성   |
+| Day 5 | `pipeline.py`, `ab_test.py`, `day5_self1.py`, `ab_test_results.json`, `cost_report.md` | 파이프라인 통합 실행, `run_ab_test()`로 p95 2.666초 산출, 리포트 생성 |
 
-- .env로 API 키를 관리하는 방법을 배웠다.
-- OpenAI gpt-image-1과 fal.ai FLUX 두 모델로 이미지를 생성해 보았다.
-- SSH를 사용해 원격 컴퓨터에서 작업하는 환경을 구축했다.
+## 잘 된 점
 
-### Day 2: 장면 설계와 프롬프트 구조화
+- `agents/`로 장면·이미지·영상 단계를 모듈 분리해 단계별로 교체·테스트 가능.
+- `.env` + `load_dotenv()`로 키를 코드 밖으로 분리하고 `.gitignore`로 제외.
+- A/B 지연 측정과 P95 계산을 `ab_test.py`로 분리해 재현 가능.
+- `pipeline.py`에서 장면별 `try/except`로 한 장면 실패가 전체를 막지 않도록 격리.
 
-- scene_draft.md로 4장면의 shot, angle, lighting, lens를 직접 설계했다.
-- scene_prompts.json으로 프롬프트를 구조화했다.
-- fal.ai FLUX를 처음 호출해 이미지를 생성했다.
+## 개선할 점
 
-### Day 3: 모듈 분리와 자동 추출
+- `cost_report.md`의 단가·총비용이 아직 `~`(미측정). 단가 기준일을 포함해 실제 비용을 채워야 함.
+- 프롬프트가 한국어 `diary_sentence` + 영어 어휘 혼재(`agents`/`day5_self1.py`). flux는 영어 선호라 선두 한국어 문장 처리 검토 필요.
+- A/B `n_calls=1`이라 P95 표본이 부족. 호출 수를 늘려 재측정 필요.
 
-- agents/scene.py로 일기 텍스트에서 장면을 자동 추출하는 모듈을 만들었다.
-- agents/image.py로 이미지 생성을 모듈화했다.
-- 사람이 만든 프롬프트와 GPT가 자동 추출한 프롬프트를 비교했다.
+## 다음 주 시도할 것
 
-### Day 4: 비동기 처리와 가드레일
+- 호출당 토큰/이미지 수를 기록해 비용 자동 집계.
+- travel 도메인에서 golden hour vs blue hour 변형 비교.
+- 표본을 늘린 A/B 재측정 후 기준선(baseline) 저장.
 
-- 동기와 비동기 처리의 차이를 이해했다. 동기는 결과가 나올 때까지 기다리고, 비동기는 결과가 나오지 않아도 다른 작업을 실행한다.
-- 가드레일로 반복 횟수, 시간, 비용을 제한하는 패턴을 배웠다.
-- Kling API로 이미지를 영상으로 변환하는 과정을 구현했다. submit 후 task_id를 받아 status로 상태를 확인하고, 완료되면 result에서 영상 URL을 받는다.
+## GitHub 저장소
 
-### Day 5: 파이프라인 통합과 도메인 응용
+- URL: https://github.com/alsgur7dl4-star/picture_diary
 
-- pipeline.py로 장면 추출 → 이미지 생성 → 영상 생성 전체 흐름을 통합했다.
-- 여행 도메인에 특화된 프롬프트를 설계했다.
+## 참고: 학습 개념 연결
 
-## 비유 카드 연결
-
-| 비유 카드                | 연결 파일/코드                       | 설명                                           |
-| ------------------------ | ------------------------------------ | ---------------------------------------------- |
-| 잠긴 서랍 (.env)         | `.env`, `load_dotenv()`              | API 키를 코드 밖에서 안전하게 보관한다         |
-| 레시피 (프롬프트)        | `SYSTEM_PROMPT` in `agents/scene.py` | LLM에게 원하는 출력 형식을 지시하는 레시피     |
-| 조립 라인 (파이프라인)   | `pipeline.py`                        | 장면 → 이미지 → 영상 순서로 조립하는 생산 라인 |
-| 전문가 팀 (에이전트)     | `agents/` 폴더                       | 각 단계를 담당하는 전문가 모듈                 |
-| 카메라 앵글 (shot/angle) | `scene_draft.md`, `prompt_en`        | WS, MS, CU와 eye-level, low, high 조합         |
-| 조명 (lighting)          | `prompt_en`                          | soft, rim, backlit으로 분위기를 바꾼다         |
-| 안전벨트 (가드레일)      | `guardrails.py`                      | 반복, 시간, 비용을 제한해 폭주를 막는다        |
-| 택배 추적 (비동기 폴링)  | `agents/video.py`                    | submit → status 확인 → result 수령             |
-| 도감 (JSON 스키마)       | `domains/travel_prompts.json`        | 도메인별 시각 어휘를 정리한 도감               |
-| 번역가 (prompt_en)       | `extract_scenes()`                   | 한국어 일기를 영문 이미지 프롬프트로 번역      |
-
-## 아쉬운 점과 다음 목표
-
-- 노트북에 그래픽 카드가 없어서 나중에 수업을 위해 SSH 환경에서 작업했는데, 로컬 개발 환경을 더 안정적으로 구축하고 싶다.
-- 이미지 품질을 높이기 위해 프롬프트 어휘를 더 다양하게 실험해 보고 싶다.
-- 도메인 응용에서 시간대별 변형(golden hour vs blue hour)을 비교해 보고 싶다.
+| 비유 카드                | 연결 파일/코드                       | 설명                               |
+| ------------------------ | ------------------------------------ | ---------------------------------- |
+| 잠긴 서랍 (.env)         | `.env`, `load_dotenv()`              | API 키를 코드 밖에서 안전하게 보관 |
+| 레시피 (프롬프트)        | `SYSTEM_PROMPT` in `agents/scene.py` | LLM에게 출력 형식을 지시           |
+| 조립 라인 (파이프라인)   | `pipeline.py`                        | 장면 → 이미지 → 영상 순서로 조립   |
+| 전문가 팀 (에이전트)     | `agents/` 폴더                       | 각 단계를 담당하는 모듈            |
+| 카메라 앵글 (shot/angle) | `scene_draft.md`, `prompt_en`        | WS/MS/CU, eye-level/low/high 조합  |
+| 조명 (lighting)          | `prompt_en`                          | soft/rim/backlit으로 분위기 조절   |
+| 안전벨트 (가드레일)      | `guardrails.py`                      | 반복·시간·비용 제한                |
+| 택배 추적 (비동기 폴링)  | `agents/video.py`                    | submit → status → result           |
+| 도감 (JSON 스키마)       | `domains/travel_prompts.json`        | 도메인별 시각 어휘 정리            |
+| 번역가 (prompt_en)       | `extract_scenes()`                   | 한국어 일기를 영문 프롬프트로 변환 |

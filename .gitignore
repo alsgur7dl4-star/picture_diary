@@ -12,10 +12,14 @@ wheels/
 
 # Secrets
 .env
+.env.*
 
 # Generated outputs
 outputs/
 *.png
+*.jpg
+*.jpeg
+*.webp
 *.mp4
 results.json
 kling_task_id.txt

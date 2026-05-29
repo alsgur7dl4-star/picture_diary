@@ -1,5 +1,4 @@
 import json
-from datetime import date
 from pathlib import Path
 
 from ab_test import compute_p95, run_ab_test
