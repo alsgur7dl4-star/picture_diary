@@ -12,7 +12,6 @@ def load_keys() -> None:
     if not key:
         print("[오류] FAL_KEY가 .env 파일에 없습니다.")
         raise SystemExit(1)
-    print(f"FAL_KEY: {key[:5]}...")
 
 
 def load_first_prompt() -> str:
