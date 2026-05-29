@@ -111,7 +111,7 @@ picture_diary/
 ├── day3_self2.py            # 실습 산출물
 ├── day4_self1.py            # 실습 산출물
 ├── day4_self2.py            # 실습 산출물
-└── day5_self1.py            # 실습 산출물
+├── day5_self1.py            # 실습 산출물
 ├── requirements.txt
 ├── pyproject.toml
 ├── .gitignore
